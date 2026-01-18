@@ -1,0 +1,14 @@
+{
+  "types": "module",
+  "scripts": {
+    "start": "node --loader ts-node/esm server/server.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.18.1",
+    "ts-node": "^10.9.2"
+  }
+}
