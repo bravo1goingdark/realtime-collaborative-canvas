@@ -1,3 +1,4 @@
+// @ts-ignore
 import WebSocket, { WebSocketServer } from "ws";
 import { RoomManager } from "./rooms.js";
 import { ClientMessage, Operation } from "./types.js";

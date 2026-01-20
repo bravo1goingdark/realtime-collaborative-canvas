@@ -3,26 +3,19 @@ export type Point = {
   y: number;
 };
 
-export type OperationType = "stroke" | "rect" | "erase";
+export type OperationType = "stroke" | "erase";
 
 export interface Operation {
   id: string;
   type: OperationType;
   userId: string;
   timestamp: number;
-  data: StrokeData | RectData | EraseData;
+  data: StrokeData | EraseData;
 }
 
 
 export interface StrokeData {
   points: Point[];
-  color: string;
-  width: number;
-}
-
-export interface RectData {
-  start: Point;
-  end: Point;
   color: string;
   width: number;
 }
@@ -67,7 +60,7 @@ export interface RoomJoinMessage {
 
 export interface DrawMessage {
   type: "draw";
-  operation: Omit<Operation, "id">;
+  operation: Omit<Operation, "id" | "timestamp">;
 }
 
 export interface UndoMessage {

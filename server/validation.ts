@@ -1,11 +1,11 @@
-import { Operation, StrokeData, RectData, EraseData } from "./types";
+import { Operation, StrokeData, EraseData } from "./types";
 
 export function isValidOperation(
   op: any
 ): op is Omit<Operation, "id"> {
   if (!op || typeof op !== "object") return false;
 
-  if (!["stroke", "rect", "erase"].includes(op.type)) return false;
+  if (!["stroke", "erase"].includes(op.type)) return false;
 
   if (typeof op.userId !== "string") return false;
   if (!Number.isFinite(op.timestamp)) return false;
@@ -24,22 +24,6 @@ export function isValidOperation(
             Number.isFinite(p.x) &&
             Number.isFinite(p.y)
         ) &&
-        typeof data.color === "string" &&
-        Number.isFinite(data.width) &&
-        data.width > 0
-      );
-    }
-
-    case "rect": {
-      const data = op.data as RectData;
-
-      return (
-        data.start &&
-        data.end &&
-        Number.isFinite(data.start.x) &&
-        Number.isFinite(data.start.y) &&
-        Number.isFinite(data.end.x) &&
-        Number.isFinite(data.end.y) &&
         typeof data.color === "string" &&
         Number.isFinite(data.width) &&
         data.width > 0

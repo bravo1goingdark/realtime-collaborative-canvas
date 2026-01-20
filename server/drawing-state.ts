@@ -6,10 +6,11 @@ export class DrawingState {
 
   private cursor: number = -1;
 
-  addOperation(op: Omit<Operation, "id">): Operation {
+  addOperation(op: Omit<Operation, "id" | "timestamp">): Operation {
     const operation: Operation = {
       ...op,
       id: generateId(),
+      timestamp: Date.now(),
     };
 
     if (this.cursor < this.operations.length - 1) {
