@@ -51,9 +51,24 @@ export class CanvasRenderer {
         this.ctx.beginPath();
         this.ctx.moveTo(points[0].x, points[0].y);
 
-        for (const p of points.slice(1)) {
-            this.ctx.lineTo(p.x, p.y);
+        if (points.length < 3) {
+            this.ctx.lineTo(points[1].x, points[1].y);
+            this.ctx.stroke();
+            return;
         }
+
+        for (let i = 1; i < points.length - 2; i++) {
+            const xc = (points[i].x + points[i + 1].x) / 2;
+            const yc = (points[i].y + points[i + 1].y) / 2;
+            this.ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+
+        this.ctx.quadraticCurveTo(
+            points[points.length - 2].x,
+            points[points.length - 2].y,
+            points[points.length - 1].x,
+            points[points.length - 1].y
+        );
 
         this.ctx.stroke();
     }
