@@ -1,6 +1,6 @@
-import { CanvasRenderer } from "./canvas";
-import { CanvasSocket } from "./websocket";
-import { Operation } from "../server/types";
+import {CanvasRenderer} from "./canvas";
+import {CanvasSocket} from "./websocket";
+import {Operation} from "../server/types";
 
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
@@ -21,12 +21,18 @@ function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
+
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
 
+const WS_URL =
+    location.hostname === "localhost"
+        ? "ws://localhost:8080"
+        : "wss://realtime-collaborative-canvas-oezi.onrender.com";
+
 const socket = new CanvasSocket(
-    "ws://localhost:8080",
+    WS_URL,
     "room1",
     {
         onInit: (ops) => renderer.replay(ops),
@@ -48,13 +54,13 @@ let currentPoints: { x: number; y: number }[] = [];
 
 canvas.addEventListener("pointerdown", (e) => {
     drawing = true;
-    currentPoints = [{ x: e.offsetX, y: e.offsetY }];
+    currentPoints = [{x: e.offsetX, y: e.offsetY}];
 });
 
 canvas.addEventListener("pointermove", (e) => {
     if (!drawing) return;
 
-    const point = { x: e.offsetX, y: e.offsetY };
+    const point = {x: e.offsetX, y: e.offsetY};
 
     if (currentTool === "stroke" || currentTool === "erase") {
         currentPoints.push(point);
