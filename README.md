@@ -1,6 +1,9 @@
 # Real-Time Collaborative Canvas
 
 A simple, real-time collaborative whiteboarding application that allows multiple users to draw together in the same "room." It showcases a server-authoritative architecture using WebSockets for low-latency communication.
+### Live Demo
+
+You can also access a live deployment here: [https://sunny-yeot-fb0cc8.netlify.app/](https://sunny-yeot-fb0cc8.netlify.app/)
 
 ![Demo](screenshot.png)
 
@@ -46,6 +49,7 @@ To get the project up and running locally, follow these steps:
     npm start
     ```
     The client will be available at `http://localhost:5173`.
+
 
 ## How to Test Collaboration
 
