@@ -3,26 +3,86 @@ html, body {
     padding: 0;
     height: 100%;
     overflow: hidden;
-    font-family: sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0; /* Light grey background */
 }
 
 #toolbar {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 10;
     background: white;
-    padding: 8px;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 #toolbar button {
-    margin-right: 6px;
-    padding: 6px 10px;
+    padding: 8px 12px;
     cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    font-size: 1em;
+}
+
+#toolbar button:hover {
+    background: #f5f5f5;
+}
+
+#color-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-left: 1px solid #eee;
+    padding-left: 10px;
+}
+
+#color-picker-container label {
+    font-size: 0.9em;
+    color: #666;
+    padding-bottom: 2px; /* Align better with the circle */
+}
+
+#color-picker {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+#color-picker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+#color-picker::-webkit-color-swatch {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+}
+
+#color-picker::-moz-color-swatch {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
 }
 
 canvas {
     display: block;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    margin: auto;
+    position: absolute; /* Center canvas */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

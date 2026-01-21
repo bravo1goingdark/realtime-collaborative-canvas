@@ -6,6 +6,15 @@ import { Operation } from "../server/types";
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 if (!canvas) throw new Error("Canvas element not found");
 
+const colorPicker = document.getElementById("color-picker") as HTMLInputElement;
+if (!colorPicker) throw new Error("Color picker element not found");
+
+let currentColor = colorPicker.value;
+colorPicker.addEventListener("input", () => {
+    currentColor = colorPicker.value;
+});
+
+
 const renderer = new CanvasRenderer(canvas);
 
 function resizeCanvas() {
@@ -59,7 +68,7 @@ canvas.addEventListener("pointermove", (e) => {
                 currentTool === "stroke"
                     ? {
                         points: currentPoints.slice(-2),
-                        color: "#000",
+                        color: currentColor,
                         width: 2,
                     }
                     : {
@@ -82,7 +91,7 @@ canvas.addEventListener("pointerup", (e) => {
             timestamp: Date.now(),
             data: {
                 points: currentPoints,
-                color: "#000",
+                color: currentColor,
                 width: 2,
             },
         });

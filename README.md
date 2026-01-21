@@ -18,34 +18,34 @@ To get the project up and running, follow these steps:
 3.  **Start the application:**
     To run the application, you need to start the client (frontend) and the server (backend) separately.
 
-    a.  **Start the client:**
-        *   Open a terminal and navigate to the project root directory:
-            ```bash
-            cd realtimecanvas
-            ```
-        *   Run the client development server using the npm script:
-            ```bash
-            npm run client
-            ```
-        *   The client will typically be available at `http://localhost:5173` (the port might vary).
+    a.  **Start the client**
+        Open a terminal and navigate to the project root directory:
+        ```bash
+        cd realtimecanvas
+        ```
+        Run the client development server using the npm script:
+        ```bash
+        npm run client
+        ```
+        The client will typically be available at `http://localhost:5173` (the port might vary).
 
-    b.  **Start the server:**
-        *   Open another terminal and navigate to the project root directory:
-            ```bash
-            cd realtimecanvas
-            ```
-        *   Run the WebSocket server using the npm script:
-            ```bash
-            npm run server
-            ```
+    b. **Start the server**
+        Open another terminal and navigate to the project root directory:
+        ```bash
+        cd realtimecanvas
+        ```
+        Run the WebSocket server using the npm script:
+        ```bash
+        npm run server
+        ```
 
 ## How to Test with Multiple Users
 
 To test the collaborative features with multiple users:
 
-1.  **Open multiple browser tabs or windows:** After starting the application, open `http://localhost:5173` in several different browser tabs or even different browsers.
-2.  **Interact on each tab:** Each tab represents a different user. You can draw and erase on the canvas in one tab, and observe the changes in real-time on all other tabs.
-3.  **Test Undo/Redo:**
+1.  **Open multiple browser tabs or windows**: After starting the application, open `http://localhost:5173` in several different browser tabs or even different browsers.
+2.  **Interact on each tab**: Each tab represents a different user. You can draw and erase on the canvas in one tab, and observe the changes in real-time on all other tabs.
+3.  **Test Undo/Redo**:
     *   Perform some drawing operations across different tabs.
     *   In any one tab, click "Undo" or use `Ctrl+Z`. Observe that the last operation, regardless of which user performed it, is undone on all connected clients.
     *   Click "Redo" or use `Ctrl+Y` to restore the undone operation across all clients.
