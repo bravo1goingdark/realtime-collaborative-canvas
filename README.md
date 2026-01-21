@@ -28,7 +28,7 @@ You can also access a live deployment here: [https://sunny-yeot-fb0cc8.netlify.a
 
 This project uses a server-authoritative model with an event-sourcing approach. The server acts as the single source of truth, capturing all drawing operations in an ordered log and broadcasting them to clients. This ensures that all users have a perfectly synchronized state.
 
-For a detailed breakdown of the data flow, WebSocket protocol, and design decisions, please see the **[Architecture.md](Architecture.md)** document.
+For a detailed breakdown of the data flow, WebSocket protocol, and design decisions, please see the **[ARCHITECTURE.md](ARCHITECTURE.md)** document.
 
 ## Local Development
 
