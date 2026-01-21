@@ -1,8 +1,10 @@
 {
   "types": "module",
   "scripts": {
+    "start": "npm run dev",
+    "dev": "concurrently \"npm:client\" \"npm:server\"",
     "server": "node --loader ts-node/esm server/server.ts",
-    "client" : "cd client && npx vite"
+    "client": "cd client && npx vite"
   },
   "type": "module",
   "dependencies": {
@@ -10,6 +12,7 @@
   },
   "devDependencies": {
     "@types/ws": "^8.18.1",
+    "concurrently": "^9.2.1",
     "ts-node": "^10.9.2",
     "vite": "^7.3.1"
   }

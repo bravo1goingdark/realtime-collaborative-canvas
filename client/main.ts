@@ -112,12 +112,36 @@ canvas.addEventListener("pointerup", (e) => {
     currentPoints = [];
 });
 
+const toolStrokeBtn = document.getElementById("tool-stroke") as HTMLButtonElement;
+const toolEraseBtn = document.getElementById("tool-erase") as HTMLButtonElement;
+const fpsDisplay = document.getElementById("fps-display") as HTMLDivElement;
 
-(document.getElementById("tool-stroke") as HTMLButtonElement)
-    .addEventListener("click", () => (currentTool = "stroke"));
+if (!toolStrokeBtn || !toolEraseBtn || !fpsDisplay) {
+    throw new Error("One or more UI elements not found for tool selection or FPS display.");
+}
 
-(document.getElementById("tool-erase") as HTMLButtonElement)
-    .addEventListener("click", () => (currentTool = "erase"));
+function setActiveToolButton(tool: Tool) {
+    toolStrokeBtn.classList.remove("active-tool");
+    toolEraseBtn.classList.remove("active-tool");
+    if (tool === "stroke") {
+        toolStrokeBtn.classList.add("active-tool");
+    } else {
+        toolEraseBtn.classList.add("active-tool");
+    }
+}
+
+toolStrokeBtn.addEventListener("click", () => {
+    currentTool = "stroke";
+    setActiveToolButton("stroke");
+});
+
+toolEraseBtn.addEventListener("click", () => {
+    currentTool = "erase";
+    setActiveToolButton("erase");
+});
+
+setActiveToolButton(currentTool);
+
 
 (document.getElementById("undo") as HTMLButtonElement)
     .addEventListener("click", () => socket.undo());
@@ -130,3 +154,24 @@ window.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key === "z") socket.undo();
     if (e.ctrlKey && e.key === "y") socket.redo();
 });
+
+let frameCount = 0;
+let lastTime = performance.now();
+
+function updateFps() {
+    frameCount++;
+    const currentTime = performance.now();
+    const elapsedTime = currentTime - lastTime;
+
+    if (elapsedTime >= 1000) { // Update FPS every second
+        const fps = Math.round((frameCount / elapsedTime) * 1000);
+        fpsDisplay.textContent = `FPS: ${fps}`;
+        frameCount = 0;
+        lastTime = currentTime;
+    }
+
+    requestAnimationFrame(updateFps);
+}
+
+updateFps();
+
